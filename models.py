@@ -71,7 +71,7 @@ class Graph:
                             # vertex_edges.remove(i)
                         else:
                             if i.color not in [e.color for e in fan] and \
-                                    self.is_color_free_at(i.color, self.vertices[fan[-1].ending_vertex]):
+                                    self.is_color_free_at(i.color, self.find_end(fan[-1], vertex)):
                                 fan.append(i)
                 if len(fan) == len1:
                     f = False
@@ -128,7 +128,7 @@ class Graph:
         e = self.find_edge_of_fan(fan, w)
         limit = fan.index(e)
         for i in range(limit + 1):
-            if fan[i] == fan[-1]:
+            if fan[i] == fan[limit]:
                 fan[i].color = None
             else:
                 fan[i].color = fan[i + 1].color
