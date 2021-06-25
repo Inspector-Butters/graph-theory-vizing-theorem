@@ -5,7 +5,7 @@ class Edge:
         self.color = color
 
     def __str__(self):
-        return f'{int(self.starting_vertex)},{int(self.ending_vertex)}: {self.color}'
+        return f'{int(self.starting_vertex)} {int(self.ending_vertex)} {self.color}'
 
     def __repr__(self):
         return str(self)
@@ -41,7 +41,15 @@ class Graph:
         return len(self.edges)
 
     def __str__(self):
-        return "\n".join(str(edge) for edge in self.edges)
+        return f'{self.find_delta()} {self.get_used_colors()}\n' + "\n".join(str(edge) for edge in self.edges)
+
+    def get_used_colors(self):
+        cs = [i.color for i in self.edges]
+        counter = 0
+        for i in self.colors:
+            if i in cs:
+                counter += 1
+        return counter
 
     def find_maximal_fan(self, vertex):
         vertex_edges = self.get_vertex_edges(vertex)

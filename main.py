@@ -23,20 +23,20 @@ g = GraphUtils.create_graph()
 
 
 for v in g.vertices:
-    print('vertex: ', g.vertices.index(v))
+    # print('vertex: ', g.vertices.index(v))
     fan = g.find_maximal_fan(v)
-    print('fan: ', fan)
+    # print('fan: ', fan)
     if len(fan) > 0:
         path, c, d = g.find_cd_path(v, fan)
-        print('path: ', path, 'c: ', c, 'd: ', d)
+        # print('path: ', path, 'c: ', c, 'd: ', d)
         if len(path) > 0:
             g.invert_path(path, c, d)
         w = g.find_w(fan, d, v)
-        print('w: ', w)
+        # print('w: ', w)
         g.rotate_fan(fan, w)
         g.color_xw(fan, v, w, d)
 
-    print(g)
-    print('------------------------')
+    # print(g)
+    # print('------------------------')
 
 print(g)
